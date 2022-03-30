@@ -15,19 +15,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    <tr v-for="res in response">
-                                        <th scope="row">1</th>
-                                        <td>{{ res.title }}</td>
-                                        <td>{{ res.description }}</td>
-                                        <td>{{ res.website_url }}</td>
-                                        <td>{{ res.status == "complated" ? "tamamlandı" : "devam ediyor" }}</td>
-                                        <td>
-                                            <div class="row">
-                                                <a href="edit"><edit-button-component>Düzenle</edit-button-component></a>
-                                                <delete-button-component/>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tr v-for="res in response" v-bind:id="'project_' + res.id">
+                                    <th scope="row">1</th>
+                                    <td>{{ res.title }}</td>
+                                    <td>{{ res.description }}</td>
+                                    <td>{{ res.website_url }}</td>
+                                    <td>{{ res.status == "complated" ? "tamamlandı" : "devam ediyor" }}</td>
+                                    <td>
+                                        <div class="row">
+                                            <div style="width:80px"><a v-bind:href="'/projects/' + res.id + '/edit'"><button class="btn btn-sm btn-primary">Düzenle</button></a></div>
+                                            <div style="width: 40px"><button v-on:click="deleteProject(res.id)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></div>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -78,7 +78,34 @@ export default {
             }).finally(() => {
                 //Perform action in always
             });
-        }
-    }
+        },
+        deleteProject: function(id){
+            var token = getCookie("token")
+            var url = 'http://localhost:8000/api/projects/' + id;
+            
+            const headers = { 
+                "Accept": "application/json",
+                'Authorization': 'Bearer ' + token
+            };
+            
+            axios.delete(
+                url,
+                { headers }
+             ).then((res) => {
+                $.ambiance({message: "Proje başarıyla silindi!", fade: true,})
+                $("#project_"+id).remove()
+
+            })
+            .catch((error) => {
+                console.log(error);
+                $.ambiance({message: "Proje silinirken hata oluştu.", fade: true, type: "error"})
+            }).finally(() => {
+                //
+            });
+
+        },
+
+    },
+    
 }
 </script>

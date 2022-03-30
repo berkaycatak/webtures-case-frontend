@@ -8,7 +8,7 @@ import SidebarComponent from "@/components/SidebarComponent.vue";
 <template>
 
 <div>
-    <div class="dash" v-if="currentRouteName == 'Anasayfa' || currentRouteName == 'Projeler'">
+    <div class="dash" v-if="currentRouteName != 'Giriş Yap' && currentRouteName != 'Kayıt Ol'">
         <sidebar-component title="Webtures"></sidebar-component>
         <div class="dash-app">
             <header-component>
@@ -21,7 +21,7 @@ import SidebarComponent from "@/components/SidebarComponent.vue";
                             <h1 class="dash-title">{{ currentRouteName }}</h1>
                         </div>
                             <div class="col-md-2">
-                                <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Proje Oluştur</button>
+                                <a href="/projects/create"><button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Proje Oluştur</button></a>
                             </div>
                     </div>
                     <RouterView />
