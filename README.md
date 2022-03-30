@@ -1,14 +1,8 @@
-# webtures_case_frontend
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-This template should help get you started developing with Vue 3 in Vite.
+# Admin Paneli - Frontend
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Admin paneli, Webtures firmasının PHP Developer pozisyonuna yaptığım başvuru için geliştirilmiştir. Backend projesindeki API ile haberleşerek çalışmaktadır.
 
 ## Project Setup
 
