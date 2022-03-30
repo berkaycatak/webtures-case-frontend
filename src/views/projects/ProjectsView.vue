@@ -9,6 +9,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Adı</th>
                                     <th scope="col">Açıklama</th>
+                                    <th scope="col">Tarih</th>
                                     <th scope="col">Website</th>
                                     <th scope="col">Durum</th>
                                     <th scope="col">İşlemler</th>
@@ -19,6 +20,7 @@
                                     <th scope="row">1</th>
                                     <td>{{ res.title }}</td>
                                     <td>{{ res.description }}</td>
+                                    <td>{{ res.date }}</td>
                                     <td>{{ res.website_url }}</td>
                                     <td>{{ res.status == "complated" ? "tamamlandı" : "devam ediyor" }}</td>
                                     <td>
@@ -36,7 +38,6 @@
         </div>
 </template>
 <script>
-var response = ["ss"];
 import axios from 'axios';
 
 export default {

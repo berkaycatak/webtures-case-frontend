@@ -11,9 +11,7 @@ import SidebarComponent from "@/components/SidebarComponent.vue";
     <div class="dash" v-if="currentRouteName != 'Giriş Yap' && currentRouteName != 'Kayıt Ol'">
         <sidebar-component title="Webtures"></sidebar-component>
         <div class="dash-app">
-            <header-component>
-                <button type="submit" class="dropdown-item">Logout</button>
-            </header-component>
+            <header-component/>
             <main class="dash-content">
                 <div class="container-fluid">
                     <div class="row mb-2">

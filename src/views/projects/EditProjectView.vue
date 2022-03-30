@@ -31,14 +31,14 @@
                             <div class="col-sm-2">Proje durumu:</div>
                             <div class="col-sm-10">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" name="status" id="status" v-model="fstatus" v-bind="response.status == 'complated' ? 'checked' : ''">
+                                    <input type="checkbox" class="custom-control-input" name="status" id="status" v-model="fstatus">
                                     <label class="custom-control-label" for="status">Tamamlandı</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Oluştur</button>
+                                <button type="submit" class="btn btn-primary">Düzenle</button>
                             </div>
                         </div>
                     </form>
@@ -48,7 +48,6 @@
     </div>
 </template>
 <script>
-var response = ["ss"];
 import axios from 'axios';
 
 export default {
@@ -64,7 +63,7 @@ export default {
                 description: "",
                 date: "",
                 website_url: "",
-                fstatus: ""
+                fstatus: "",
             }
         },
     methods: {
@@ -91,7 +90,12 @@ export default {
                 this.description = res.data.description;
                 this.date = res.data.date;
                 this.website_url = res.data.website_url;
-                this.fstatus = res.data.fstatus;
+                if (res.data.status == "completed")
+                    this.fstatus = true;
+                else
+                    this.fstatus = false;
+                console.log(this.fstatus)
+
             })
             .catch((error) => {
               console.log(error);
@@ -109,11 +113,12 @@ export default {
                 "Accept": "application/json",
                 'Authorization': 'Bearer ' + token
             };
-            
+            console.log(url)
             axios.put(
                 url, [],
                 { headers }
              ).then((res) => {
+                 console.log(res.data);
                 $.ambiance({message: "Proje başarıyla güncellendi!", fade: true,})
             })
             .catch((error) => {

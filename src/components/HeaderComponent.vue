@@ -12,20 +12,12 @@
             <input type="text" class="searchbox-input" placeholder="type to search">
         </form>
         <div class="tools">
-            <a href="https://github.com/HackerThemes/spur-template" target="_blank" class="tools-item">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="#!" class="tools-item">
-                <i class="fas fa-bell"></i>
-                <i class="tools-item-count">4</i>
-            </a>
             <div class="dropdown tools-item">
                 <a href="#" class="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="#!">Profile</a>
-                    <slot></slot>
+                    <button type="submit" v-on:click="logout()" class="dropdown-item">Logout</button>
                 </div>
             </div>
         </div>
@@ -33,7 +25,38 @@
 </template>
 
 <script>
-    export default {
-        name: "HeaderComponent"
+import axios from 'axios';
+
+export default {
+    name: "HeaderComponent",
+    methods: {
+        logout: function(){
+            var token = getCookie("token")
+            var url = 'http://localhost:8000/api/logout/';
+            
+            const headers = { 
+                "Accept": "application/json",
+                'Authorization': 'Bearer ' + token
+            };
+            
+            axios.post(
+                url, [], { headers }
+             ).then((res) => {
+                $.ambiance({message: "Çıkış yapıldı!", fade: true,})
+                eraseCookie("name");
+                eraseCookie("email");
+                eraseCookie("token");
+                window.location.href = "/login";
+
+            })
+            .catch((error) => {
+                console.log(error);
+                $.ambiance({message: "Çıkış yapılırken hata oluştu.", fade: true, type: "error"})
+            }).finally(() => {
+                //
+            });
+
+        }
     }
+}
 </script>

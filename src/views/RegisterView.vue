@@ -64,6 +64,7 @@ export default {
                 document.cookie = "name=" + res.data["user"]["name"];
                 document.cookie = "email=" + res.data["user"]["email"];
                 document.cookie = "token=" + res.data["token"];
+                window.location.href = "/";
             })
             .catch((error) => {
               console.log(error);

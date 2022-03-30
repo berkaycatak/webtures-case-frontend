@@ -7,8 +7,10 @@ function getCookie(name) {
     if (parts.length === 2) 
     return parts.pop().split(';').shift();
   }
-  
 
+function eraseCookie(name) {   
+    document.cookie = name+'=; Max-Age=-99999999;';  
+}
   /*!
  * Modificado por JosÃ© Javier FernÃ¡ndez Mendoza
  * Versin 1.0.2
@@ -119,3 +121,4 @@ function getCookie(name) {
     jQuery(this).parent().remove();
     return false;
   });
+  
