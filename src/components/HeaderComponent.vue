@@ -53,7 +53,9 @@ export default {
                 console.log(error);
                 $.ambiance({message: "Çıkış yapılırken hata oluştu.", fade: true, type: "error"})
             }).finally(() => {
-                //
+                eraseCookie("name");
+                eraseCookie("email");
+                eraseCookie("token");
             });
 
         }

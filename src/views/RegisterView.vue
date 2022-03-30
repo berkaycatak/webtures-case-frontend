@@ -58,7 +58,7 @@ export default {
               "Accept": "application/json"
             };
             axios.defaults.withCredentials = true;
-            axios.post('http://localhost:8000/api/register?name='+ this.fname +'&email='+ this.email +'&pass='+ this.password +'&password_confirmation='+ this.password_confirmation +'', 
+            axios.post('http://localhost:8000/api/register?name='+ this.fname +'&email='+ this.email +'&password='+ this.password +'&password_confirmation='+ this.password_confirmation +'', 
              { headers })
             .then((res) => {
                 document.cookie = "name=" + res.data["user"]["name"];

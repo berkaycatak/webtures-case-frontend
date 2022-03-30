@@ -70,7 +70,6 @@ export default {
             axios.get('http://localhost:8000/api/projects', 
              { headers })
             .then((res) => {
-                console.log(res.data)
                 this.response = res.data;
             })
             .catch((error) => {
